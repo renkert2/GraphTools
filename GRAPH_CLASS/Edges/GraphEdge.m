@@ -1,4 +1,4 @@
-classdef GraphEdge < matlab.mixin.Heterogeneous & matlab.mixin.Copyable
+classdef GraphEdge < matlab.mixin.Heterogeneous & handle
     % GraphEdge Super Class for all edge types (i.e. Internal, External) in
     % the Graph Modeling Toolbox
     % Instatiate an empty object or use an input parser

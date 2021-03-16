@@ -258,7 +258,7 @@ classdef Graph < matlab.mixin.Copyable
                 G (:,1) Graph
                 ConnectE cell = {}
                 ConnectV cell = {}
-                opts.CopyEdges logical = true;
+                opts.CopyEdges logical = false;
             end
             
             % Format ConnectV and ConnectE as {:,1} cell array containing list of
