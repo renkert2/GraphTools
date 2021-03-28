@@ -1,4 +1,4 @@
-classdef symParam < sym
+classdef symParam_handle < handle
     % symParams are used to define symbolic design variables 
     % for design optimization or parameter studies.  symParams can
     % replace numeric parameters in a component definition.  When using 
@@ -14,18 +14,16 @@ classdef symParam < sym
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % potential improvements:
-    % - Needs a complete overhaul.  I would love to layer this on 
-    % top of GraphClass core somehow.  Also it's annoying having the SymParams
-    % and SymParams_Vals properties running all over the place.  
+    % potential improvements:  
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     properties
+        Sym sym
         Default_Value double
     end
     
     methods
-        function obj = symParam(sym_arg, def, varargin)  
+        function obj = symParam_handle(sym_arg, def, varargin)  
             % symParam Constructor:
             % - sym_arg: char or string of the name of the symbolic variable, i.e. "R" or "J"
             % - def: Default value of the symParam, double
@@ -39,7 +37,7 @@ classdef symParam < sym
                 sym_arg = [];
             end
             
-            obj@sym(sym_arg, ["real", "positive", varargin{:}]); % Add real, positive assumptions to all sym_param symbolic variables
+            obj.Sym = sym(sym_arg, ["real", "positive", varargin{:}]); % Add real, positive assumptions to all sym_param symbolic variables
             obj.Default_Value = def;
         end
         
