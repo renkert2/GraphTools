@@ -20,7 +20,7 @@ classdef Component < matlab.mixin.Heterogeneous & handle
     
     properties       
         Name (1,1) string = "Component" % Block Name
-        Graph (1,1) Graph
+        Graph (1,1) Graph 
         Ports (:,1) ComponentPort = ComponentPort.empty()
         
         extrinsicProps (:,1) extrinsicProp

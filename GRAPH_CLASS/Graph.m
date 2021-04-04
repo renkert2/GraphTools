@@ -454,6 +454,12 @@ classdef Graph < matlab.mixin.Copyable
                 end
             end
         end
+        
+        function val = isempty(obj)
+            val = isempty(obj.Vertices);
+        end
+        
     end
+    
 end
 

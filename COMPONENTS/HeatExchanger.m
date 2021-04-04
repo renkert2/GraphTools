@@ -52,8 +52,8 @@ classdef HeatExchanger < Component
             P(3) = Type_PowerFlow("xh");
             
             % Define Vertices
-            Vertex(1) = GraphVertex_Internal('Description','Temp S1','Capacitance',C(1),'Coefficient',10,'Initial',25, 'VertexType', 'Temperature');
-            Vertex(2) = GraphVertex_Internal('Description','Temp S2','Capacitance',C(1),'Coefficient',10,'Initial',25, 'VertexType', 'Temperature');
+            Vertex(1) = GraphVertex_Internal('Description','Temp S1','Capacitance',C(1),'Coefficient',10,'Initial',obj.T1_init, 'VertexType', 'Temperature');
+            Vertex(2) = GraphVertex_Internal('Description','Temp S2','Capacitance',C(1),'Coefficient',10,'Initial',obj.T2_init, 'VertexType', 'Temperature');
             Vertex(3) = GraphVertex_External('Description','Inlet S1');
             Vertex(4) = GraphVertex_External('Description','Inlet S2');
             Vertex(5) = GraphVertex_External('Description','Outlet S1');
@@ -86,4 +86,41 @@ classdef HeatExchanger < Component
             obj.Ports = p; 
         end
     end
+    
+    % add set methods for all component properties here.
+    methods
+        function set.cp_f1(obj,val)
+            obj.cp_f1 = val;
+            if ~isempty(obj.Graph)
+                obj.Graph.Edges(1).Coefficient = val;
+                obj.Graph.Edges(2).Coefficient = val;
+            end
+        end
+        function set.cp_f2(obj,val)
+            obj.cp_f2 = val;
+            if ~isempty(obj.Graph)
+                obj.Graph.Edges(3).Coefficient = val;
+                obj.Graph.Edges(4).Coefficient = val;
+            end
+        end
+        function set.T1_init(obj,val)
+            obj.T1_init = val;
+            if ~isempty(obj.Graph)
+                obj.Graph.Vertices(1).Initial = val;
+            end
+        end
+        function set.T2_init(obj,val)
+            obj.T2_init = val;
+            if ~isempty(obj.Graph)
+                obj.Graph.Vertices(2).Initial = val;
+            end
+        end
+        function set.HTC(obj,val)
+            obj.HTC = val;
+            if ~isempty(obj.Graph)
+                obj.Graph.Edges(5).Coefficient = [val -val];
+            end
+        end
+    end
 end
+

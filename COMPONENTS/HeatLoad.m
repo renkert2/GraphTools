@@ -15,7 +15,7 @@ classdef HeatLoad < Component
         % Working Fluid
         fluid char = 'JP8'
         % Initial Fluid temperature [C]
-        T_init(1,1) = 25;
+        T_init (1,1) = 25;
         % Fluid Specific Heat [J/kg]
         cp_f (1,1) double {mustBeNumeric} = 2000;  
     end
@@ -74,11 +74,21 @@ classdef HeatLoad < Component
         
     end
     
+    % add set methods for all component properties here.
     methods
         function set.cp_f(obj,val)
             obj.cp_f = val;
-            obj.Graph.Edges(1).Coefficient = val;
-            obj.Graph.Edges(2).Coefficient = val;
+            if ~isempty(obj.Graph)
+                obj.Graph.Edges(1).Coefficient = val;
+                obj.Graph.Edges(2).Coefficient = val;
+            end
+        end
+        
+        function set.T_init(obj,val)
+            obj.T_init = val;
+            if ~isempty(obj.Graph)
+                % no affected objects
+            end
         end
     end
     

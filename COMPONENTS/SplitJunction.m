@@ -84,4 +84,18 @@ classdef SplitJunction < Component
             
         end
     end
+    
+    % add set methods for all component properties here.
+    methods
+        function set.cp_f(obj,val)
+            obj.cp_f = val;
+            if ~isempty(obj.Graph)
+                for i = 1:(obj.n_in+obj.n_out)
+                    obj.Graph.Edges(i).Coefficient = val;
+                end
+            end
+        end
+        
+    end
+    
 end

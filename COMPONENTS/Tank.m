@@ -46,8 +46,8 @@ classdef Tank < Component
             P(3) = Type_PowerFlow("(u1-u2)");
           
             % define vertices
-            Vertex(1) = GraphVertex_Internal('Description','Liquid Temp','Capacitance',C(1),'Coefficient',obj.cp_f,'Initial',25, 'VertexType', 'Temperature');
-            Vertex(2) = GraphVertex_Internal('Description','Tank Mass','Capacitance',C(1),'Coefficient',1,'Initial',100);
+            Vertex(1) = GraphVertex_Internal('Description','Liquid Temp','Capacitance',C(1),'Coefficient',obj.cp_f,'Initial',obj.T_init, 'VertexType', 'Temperature');
+            Vertex(2) = GraphVertex_Internal('Description','Tank Mass','Capacitance',C(1),'Coefficient',1,'Initial',obj.m_init);
             Vertex(3) = GraphVertex_External('Description','Inlet');
             Vertex(4) = GraphVertex_External('Description','Outlet');
             Vertex(5) = GraphVertex_External('Description','Sink');
@@ -86,4 +86,30 @@ classdef Tank < Component
             
         end
     end
+    
+    % add set methods for all component properties here.
+    methods
+        function set.cp_f(obj,val)
+            obj.cp_f = val;
+            if ~isempty(obj.Graph)
+                obj.Graph.Vertices(1).Coefficient = val;
+                obj.Graph.Edges(1).Coefficient = val;
+                obj.Graph.Edges(2).Coefficient = val;
+                obj.Graph.Edges(3).Coefficient = val;
+            end
+        end
+        function set.T_init(obj,val)
+            obj.T_init = val;
+            if ~isempty(obj.Graph)
+                obj.Graph.Vertices(1).Initial = val;
+            end
+        end
+        function set.m_init(obj,val)
+            obj.m_init = val;
+            if ~isempty(obj.Graph)
+                obj.Graph.Vertices(2).Initial = val;
+            end
+        end
+    end
+    
 end
