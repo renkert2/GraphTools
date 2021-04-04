@@ -8,8 +8,8 @@ load ToySystem
 figure; plot(G)
 
 %% Generate and plot component models
-load1 = HeatLoad('Name','Load 1','T_init',symParam('T_init', 16));
-HX1   = HeatExchanger('Name','HX 1','T1_init',symParam('T_init', 16));
+load1 = HeatLoad('Name','Load 1','T_init',symParam('T1_init', 20));
+HX1   = HeatExchanger('Name','HX 1','T1_init',symParam('T1_init', 16));
 SJ1   = SplitJunction('Name','J2S1','n_in',2,'n_out',1);
 SJ2   = SplitJunction('Name','J1S2','n_in',1,'n_out',2);
 tank1 = Tank('Name','Tank 1','T_init',50);

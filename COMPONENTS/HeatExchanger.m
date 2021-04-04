@@ -15,7 +15,7 @@ classdef HeatExchanger < Component
         % Side 2 working Fluid
         fluid2 char = 'water'
         % Initial Side 1 Fluid temperature [C]
-        T1_init(1,1) double {mustBeNumeric} = 25;
+        T1_init(1,1)  = 25;
         % Initial Side 2 Fluid temperature [C]
         T2_init(1,1) double {mustBeNumeric} = 25;
         % Side 1 fluid Specific Heat [J/kg]

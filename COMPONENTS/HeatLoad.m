@@ -15,7 +15,7 @@ classdef HeatLoad < Component
         % Working Fluid
         fluid char = 'JP8'
         % Initial Fluid temperature [C]
-        T_init(1,1) double {mustBeNumeric} = 25;
+        T_init(1,1) = 25;
         % Fluid Specific Heat [J/kg]
         cp_f (1,1) double {mustBeNumeric} = 2000;  
     end
@@ -69,5 +69,19 @@ classdef HeatLoad < Component
             obj.Graph.Outputs = o;
             
         end
+        
+        
+        
     end
+    
+    methods
+        function set.cp_f(obj,val)
+            obj.cp_f = val;
+            obj.Graph.Edges(1).Coefficient = val;
+            obj.Graph.Edges(2).Coefficient = val;
+        end
+    end
+    
 end
+
+
