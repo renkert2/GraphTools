@@ -226,7 +226,7 @@ classdef GraphModel < Model
             
             parents = vertcat(vertcat(obj.Graph.InternalEdges.Parent).Name);
             
-            edge_table = table((1:(obj.graph.Ne))',parents, pflows_strings, 'VariableNames', ["Edges", "Component", "PowerFlows"]);
+            edge_table = table((1:(obj.Graph.Ne))',parents, pflows_strings, 'VariableNames', ["Edges", "Component", "PowerFlows"]);
         end
         
         function [t,x, pf] = Simulate(obj, inputs, disturbances, params, t_range, opts)

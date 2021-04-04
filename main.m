@@ -44,3 +44,4 @@ Sys = GraphModel(SysGraph);
 figure
 plot(Sys,'NodeColor','r','EdgeColor','b','DetailedLabels','All');
 
+LinGraph  = getLinearModel(Sys);
