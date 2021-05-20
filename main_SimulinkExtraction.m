@@ -8,7 +8,7 @@ clear all; close all; clc
 figure
 for i = 1:length(Comps)
     subplot(ceil(length(Comps)/2),2,i)
-    plot(Comps(i).graph,'NodeColor','b','EdgeColor','b');
+    plot(Comps(i).Graph,'NodeColor','r','EdgeColor','b');
     title(Comps(i).Name)
 end
 
@@ -16,6 +16,14 @@ end
 SystemGraph = Combine(Comps,ConnectP);
 SysModel = GraphModel(SystemGraph);
 
+Comps(2).HTC = 10; % comment
+SysModel.init();
+
 %% Plot System Graph and Model
+
 figure
 plot(SysModel,'NodeColor','r','EdgeColor','b','DetailedLabels','States','DetailedLabels','Disturbances');
+figure
+plot(SystemGraph,'NodeColor','r','EdgeColor','b');
+figure
+plot(SysModel,'NodeColor','r','EdgeColor','b','DetailedLabels','All');

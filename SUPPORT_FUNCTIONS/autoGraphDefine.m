@@ -132,6 +132,7 @@ if PLOTGRAPH
     end
     hold off
 end
+            set(gcf,'WindowButtonDownFcn',@(f,~)edit_graph(f,p))
 
 %% Get Component Connection Set
 % edge matrix for internal connections
